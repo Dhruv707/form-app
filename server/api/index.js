@@ -12,7 +12,7 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.post("/api/generateSchema", async (req, res) => {
+app.post("/generateSchema", async (req, res) => {
   const { prompt } = req.body;
   try {
     const completion = await client.chat.completions.create({
