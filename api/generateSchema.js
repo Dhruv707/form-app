@@ -1,4 +1,4 @@
-import { OpenAI } from "openai";
+import OpenAI from "openai";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,7 +7,9 @@ export default async function handler(req, res) {
 
   try {
     const { prompt } = req.body;
-
+    if (!prompt) {
+      return res.status(400).json({ error: "Prompt is required" });
+    }
     const client = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
